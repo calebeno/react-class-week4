@@ -3,14 +3,13 @@ import {Link} from 'react-router'
 import {connect} from 'react-redux';
 import * as actions from '../actions/';
 import {bindActionCreators} from 'redux';
-import * as types from '../constants/actionTypes';
+import AddUserForm from './AddUserForm';
 
 class Users extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {list: []};
-        this.render = this.render.bind(this);
         this.clickHandler = this.clickHandler.bind(this);
         this.reduxDispatch = this.reduxDispatch.bind(this);
         this.updateList = this.updateList.bind(this);
@@ -38,8 +37,8 @@ class Users extends React.Component {
                     })}
                 </ul>
                 <button onClick={self.clickHandler}>Test Clicker</button>
-                <button onClick={self.reduxDispatch}>Dispatch</button>
-
+                {/*<button onClick={self.reduxDispatch}>Dispatch</button>*/}
+                <AddUserForm submitEvent={self.reduxDispatch} />
             </div>
         );
     }
@@ -51,10 +50,10 @@ class Users extends React.Component {
         this.setState({list: tmpState});
     }
 
-    reduxDispatch() {
+    reduxDispatch(newUser) {
         console.log('dispatched...');
         var tmpState = this.state.list;
-        var user = {name: "dummy dummy", email: 'dummy@icct.com', foo: 'aa'};
+        var user = {name: newUser.name, email: newUser.email};
         tmpState.push(user);
         this.props.actions.addUser(tmpState);
     }

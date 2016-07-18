@@ -1,6 +1,7 @@
 'use strict';
 
 import React from 'react';
+import {connect} from 'react-redux';
 
 class AddUserForm extends React.Component {
     constructor(props) {
@@ -16,27 +17,25 @@ class AddUserForm extends React.Component {
                 <form onSubmit={this.onSubmit}>
                     <input placeholder="Name" ref="userName" type="text"/>
                     <input placeholder="Email" ref="userEmail" type="text"/>
-                    <button onClick={this.submitForm()}>Add User</button>
                 </form>
+                <button onClick={this.submitForm}>Add User</button>
             </div>
         );
     }
 
-    componentDidMount() {
-        React.findDOMNode(this.refs.userName);
-    }
-
     submitForm() {
-        var userName = React.findDOMNode(this.refs.userName);
-        var userEmail = React.findDOMNode(this.refs.userEmail);
+        var userName = this.refs.userName;
+        var userEmail = this.refs.userEmail;
         var input = {
-            userName: userName.value,
-            userEmail: userEmail.value
+            name: userName.value,
+            email: userEmail.value
         };
         this.props.submitEvent(input);
         userName.value = '';
         userEmail.value = '';
     }
 }
+
+AddUserForm = connect()(AddUserForm);
 
 export default AddUserForm;

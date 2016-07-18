@@ -1,9 +1,16 @@
 import * as types from '../constants/actionTypes';
 
-export function addUser(list) {
-  return {type: types.ADD_USER, list: list};
-}
+export const addUser = newUser => {
+    return {
+        type: types.ADD_USER,
+        newUser
+    };
+};
 
-export function createUser(user) {
-  return {type: types.CREATE_USER, user: user};
-}
+// TODO:  For later
+// export const createUser = user => {
+//     return {
+//         type: types.CREATE_USER,
+//         user
+//     };
+// };
