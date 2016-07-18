@@ -1,8 +1,8 @@
-import {ADD_USER, CREATE_USER} from '../constants/actionTypes';
+import { ADD_USER, CREATE_USER } from '../constants/actionTypes';
 
-const rootReducer = function (initialState = [], action) {
+const rootReducer = (initialState = [], action) => {
     var reducer = {};
-    reducer[ADD_USER] = function () {
+    reducer[ADD_USER] = function() {
         return [
             ...initialState,
             action.newUser
@@ -14,7 +14,7 @@ const rootReducer = function (initialState = [], action) {
     //     return action.user;
     // };
 
-    if (reducer[action.type]) {
+    if (action && reducer[action.type]) {
         return reducer[action.type]();
     } else {
         return initialState;

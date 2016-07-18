@@ -3,7 +3,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-class AddUserForm extends React.Component {
+export class AddUserForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {message: ''};
@@ -36,6 +36,4 @@ class AddUserForm extends React.Component {
     }
 }
 
-AddUserForm = connect()(AddUserForm);
-
-export default AddUserForm;
+export default connect()(AddUserForm);
